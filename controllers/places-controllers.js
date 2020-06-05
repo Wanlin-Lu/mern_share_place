@@ -1,3 +1,4 @@
+const { v1: uuidv1 } = require('uuid')
 const HttpError = require("../models/http-error");
 
 const M_P = [
@@ -51,5 +52,20 @@ const getPlaceByUserId = (req, res, next) => {
   res.json({ place });
 }
 
+const createPlace = (req, res, next) => {
+  const { title, description, address, coordinates, creator } = req.body
+  const createdPlace = {
+    id: uuidv1(),
+    title,
+    description,
+    address,
+    location: coordinates,
+    creator,
+  }
+  M_P.unshift(createdPlace)
+  res.status(201).json({ createdPlace })
+}
+
 exports.getPlaceById = getPlaceById
 exports.getPlaceByUserId = getPlaceByUserId
+exports.createPlace = createPlace
