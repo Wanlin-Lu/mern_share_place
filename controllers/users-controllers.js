@@ -65,10 +65,24 @@ const signup = async (req, res, next) => {
   res.status(201).json({ user: createdUser.toObject({ getters: true }) })
 }
 
-const login = (req, res, next) => {
+const login = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError("Invalid inputs passed, please check your data.", 422)
+    );
+  }
   const { email, password } = req.body
 
-  const identifiedUser = M_U.find(u => u.email === email)
+  let identifiedUser
+  try {
+    identifiedUser = await User.findOne({ email: email })
+  } catch (err) {
+    return next(
+      new HttpError('Login failed, please try again later.', 500)
+    )
+  }
+
   if (!identifiedUser || identifiedUser.password !== password ) {
     throw new HttpError('Could not identify user, credentials seems to be wrong.', 401)
   }
