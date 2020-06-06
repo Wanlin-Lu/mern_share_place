@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 const placeRouter = require('./routes/places-routes')
 const userRouter = require('./routes/users-routes')
@@ -25,5 +26,18 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occurred." })
 })
 
-app.listen(5000)
+mongoose
+  .connect(
+    "mongodb+srv://luwanlin:R37T9XXsQivoY4pq@shareplaces-u7evs.gcp.mongodb.net/mern?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }
+  )
+  .then(() => {
+    app.listen(5000);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
