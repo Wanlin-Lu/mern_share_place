@@ -1,7 +1,7 @@
 const { v1: uuidv1 } = require('uuid')
 const HttpError = require("../models/http-error");
 
-const M_P = [
+let M_P = [
   {
     id: "p1",
     title: "Empire State Building",
@@ -66,6 +66,27 @@ const createPlace = (req, res, next) => {
   res.status(201).json({ createdPlace })
 }
 
+const updatePlace = (req, res, next) => {
+  const { title, description } = req.body
+  const placeId = req.params.pid
+  
+  const updatedPlace = { ...M_P.find(p => p.id === placeId) }
+  const placeIndex = M_P.findIndex(p => p.id === placeId)
+  updatedPlace.title = title
+  updatedPlace.description = description
+  M_P[placeIndex] = updatedPlace
+
+  res.status(200).json({ place: updatedPlace })
+}
+
+const deletePlace = (req, res, next) => {
+  const placeId = req.params.pid
+  M_P = M_P.filter(p => p.id !== placeId)
+  res.status(200).json({ message: 'Place deleted.'})
+}
+
 exports.getPlaceById = getPlaceById
 exports.getPlaceByUserId = getPlaceByUserId
 exports.createPlace = createPlace
+exports.updatePlace = updatePlace
+exports.deletePlace = deletePlace
