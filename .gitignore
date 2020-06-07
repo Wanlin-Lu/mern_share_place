@@ -1,6 +1,8 @@
 # dependencies
 /node_modules
 /client/node_modules
+/client/.git
+/client/.gitignore
 
 # production
 /client/build
