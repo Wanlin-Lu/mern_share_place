@@ -21,7 +21,7 @@ const Map = props => {
       title: title,
     });
     map.add(marker)
-  }, [center, zoom])
+  }, [center, zoom, title])
   
   return (
     <div ref={mapRef} className={`map ${props.className}`} style={props.style}></div>

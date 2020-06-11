@@ -19,7 +19,7 @@ const formReducer = (state, action) => {
       return {
         ...state,
         inputs: {
-          ...state.Inputs,
+          ...state.inputs,
           [action.inputId]: { value: action.value, isValid: action.isValid }
         },
         isValid: formIsValid
@@ -34,11 +34,11 @@ const NewPlaces = () => {
     inputs: {
       title: {
         value: '',
-        isValid: false,
+        isValid: false
       },
       description: {
         value: '',
-        isValid: false,
+        isValid: false
       }
     },
     isValid: false
@@ -48,8 +48,16 @@ const NewPlaces = () => {
     dispatch({ type: 'INPUT_CHANGE', value: value, isValid: isValid, inputId: id})
   }, [])
 
+  const placeSubmitHandler = event => {
+    event.preventDefault()
+    console.log(formState.inputs) //send this to the backend
+  }
+
   return (
-    <form className="place-form">
+    <form
+      className="place-form"
+      onSubmit={placeSubmitHandler}
+    >
       <Input
         id="title"
         element="input"
