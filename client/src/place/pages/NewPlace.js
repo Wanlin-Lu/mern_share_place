@@ -54,10 +54,7 @@ const NewPlaces = () => {
   }
 
   return (
-    <form
-      className="place-form"
-      onSubmit={placeSubmitHandler}
-    >
+    <form className="place-form" onSubmit={placeSubmitHandler}>
       <Input
         id="title"
         element="input"
@@ -75,14 +72,20 @@ const NewPlaces = () => {
         errorText="Please enter a valid description(at least 5 charactors)."
         onInput={InputHandler}
       />
-      <Button
-        type="submit"
-        disabled={!formState.isValid}
-      >
+      <Input
+        id="address"
+        element="input"
+        type="text"
+        label="Address"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid address."
+        onInput={InputHandler}
+      />
+      <Button type="submit" disabled={!formState.isValid}>
         ADD PLACE
       </Button>
     </form>
-  )
+  );
 };
 
 export default NewPlaces;
