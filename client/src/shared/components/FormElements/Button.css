@@ -37,7 +37,7 @@
   background: #f34343;
   border-color: #f34343;
 }
-.button--disabled,
+.button:disabled,
 .button:hover:disabled,
 .button:active:disabled {
   background: #ccc;
