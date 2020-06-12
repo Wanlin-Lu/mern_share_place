@@ -82,7 +82,7 @@ const login = async (req, res, next) => {
     )
   }
 
-  res.json({ message: 'Logged in!'})
+  res.json({ message: 'Logged in!', user: identifiedUser.toObject({ getters: true })})
 }
 exports.getUsers = getUsers 
 exports.signup = signup
