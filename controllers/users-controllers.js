@@ -67,7 +67,15 @@ const login = async (req, res, next) => {
   }
   const { email, password } = req.body
 
-  const identifiedUser = M_U.find(u => u.email === email)
+  let identifiedUser
+  try {
+    identifiedUser = await User.findOne({ email })
+  } catch (err) {
+    return next(
+      new HttpError('Login failed, please try again later!', 500)
+    )
+  }
+
   if (!identifiedUser || identifiedUser.password !== password) {
     return next(
       new HttpError('Could not identify user, credentials seems to be wrong.', 401)
