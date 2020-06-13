@@ -79,7 +79,7 @@ const PlaceItem = props => {
               VIEW ON MAP
             </Button>
             {auth.isLoggedIn && (
-              <Button to={`/place/${props.id}`}>EDIT</Button>
+              <Button to={`/places/${props.id}`}>EDIT</Button>
             )}
             {auth.isLoggedIn && (
               <Button
