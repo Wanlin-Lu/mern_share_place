@@ -42,7 +42,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image: "https://i0.hdslb.com/bfs/face/32c29e460aaaee403b38296bd492c8ee8e025590.jpg",
+    image: req.file.path,
     password,
     places: []
   })
