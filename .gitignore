@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/uploads
 /client/node_modules
 /client/.git
 /client/.gitignore
