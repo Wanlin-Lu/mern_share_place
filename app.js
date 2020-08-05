@@ -45,7 +45,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://luwanlin:R37T9XXsQivoY4pq@shareplaces-u7evs.gcp.mongodb.net/mern_s?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@shareplaces-u7evs.gcp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true

@@ -1,0 +1,9 @@
+{
+  "env": {
+    "DB_USER": "luwanlin",
+    "DB_PASSWORD": "R37T9XXsQivoY4pq",
+    "DB_NAME": "mern_s",
+    "GAODE_API_KEY": "00c668df1ec5a619a6cc412dfa57cad5",
+    "JWT_KEY": "supersecret_dont_share"
+  }
+}

@@ -2,7 +2,7 @@ const axios = require('axios')
 
 const HttpError = require('../models/http-error')
 
-const API_KEY = "00c668df1ec5a619a6cc412dfa57cad5"
+const API_KEY = process.env.GAODE_API_KEY;
 
 const getCoordsForAddress = async (address) => {
   // return {
