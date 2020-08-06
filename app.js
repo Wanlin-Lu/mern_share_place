@@ -13,6 +13,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.use('/uploads/images', express.static(path.join('uploads', 'images')))
+app.use(express.static(path.join("client", "build")));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -26,9 +27,13 @@ app.use('/api/places', placeRouter)
 app.use('/api/users', userRouter)
 
 app.use((req, res, next) => {
-  const error = new HttpError('Could not find this route.', 404)
-  throw error
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
 })
+
+// app.use((req, res, next) => {
+//   const error = new HttpError('Could not find this route.', 404)
+//   throw error
+// })
 
 app.use((error, req, res, next) => {
   if (req.file) {
@@ -52,7 +57,7 @@ mongoose
     }
   )
   .then(() => {
-    app.listen(5000);
+    app.listen(process.env.PORT || 5000);
   })
   .catch((err) => {
     console.log(err);
