@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 // import UpdatePlace from './place/pages/UpdatePlace'
 // import Auth from './user/pages/Auth'
 import MainNavigation from './shared/components/Navigation/MainNavigation'
+import Footer from './shared/components/UIElements/Footer'
 import { AuthContext } from './shared/context/auth-context'
 import { useAuth } from './shared/hooks/auth-hook'
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
@@ -78,6 +79,7 @@ const App = () => {
             {routes}
           </Suspense>
         </main>
+        <Footer />
       </Router>
     </AuthContext.Provider>
   );
