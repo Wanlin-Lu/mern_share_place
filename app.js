@@ -32,6 +32,7 @@ app.use((req, res, next) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
 })
 
+// ! this part is not necessary
 // app.use((req, res, next) => {
 //   const error = new HttpError('Could not find this route.', 404)
 //   throw error
